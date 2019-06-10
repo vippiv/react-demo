@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生命周期</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+class LifeCircle extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {count:1};
+        this.handleClick = this.handleClick.bind(this);
+    }
+    componentWillMount(){
+        console.log("componentWillMount");
+    }
+    componentDidMount(){
+        console.log("componentDidMount");
+    }
+    componentWillUpdate(){
+        console.log("componentWillUpdate");
+    }
+    componentDidUpdate(){
+        console.log("componentDidUpdate");
+    }
+    componentWillUnmount(){
+        console.log("componentWillUnmount");
+    }
+    handleClick(){
+        this.setState({
+            count : this.state.count + 1
+        });
+    }
+    render(){
+        return(
+            <div>
+                <p>生命周期，请打开控制台查看输出</p>
+                <div>
+                    <span>{this.state.count}</span>
+                    <input type="button" value="plus" onClick={this.handleClick} />
+                </div>
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <LifeCircle />,
+    document.getElementById('example')
+);
+</script>
+</body>
+</html>

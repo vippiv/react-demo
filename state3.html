@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>State</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+function FormateDate(props){
+    return <h2>现在是：{props.date.toLocaleTimeString()}</h2>
+}
+class Clock extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {date:new Date()};
+    }
+    componentDidMount(){
+        this.timerId = setInterval(()=>{
+            this.tick()
+        },1000)
+    }
+    componentWillUnmount(){
+        clearInterval(this.timerId);
+    }
+    tick(){
+        this.setState({
+            date : new Date()
+        })
+    }
+    render(){
+        return (
+            <div>
+                <h1>hello, world</h1>
+                <FormateDate date={this.state.date}/>
+            </div>
+        )
+    }
+}
+function App(){
+    return (
+        <div>
+            <Clock />
+            <Clock />
+            <Clock />
+        </div>
+    )
+}
+ReactDOM.render(
+    <App />,
+    document.getElementById("example")
+);
+</script>
+</body>
+</html>

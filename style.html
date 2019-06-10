@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>样式</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+function s1() {
+    class S1 extends React.Component{
+        constructor(){
+            super();
+            this.state = {
+                ss1 : {
+                    color : "green"
+                }
+            }
+        }
+        render(){
+            return(
+                <div>
+                    <p>react中的style必须当做js对象处理，以名值对处理</p>
+                    <p style={{border:"1px solid orange", fontSize:"14px"}}>hello, world</p>
+                    <p style={this.state.ss1}>绿色</p>
+                    <p className="bold">加粗</p>
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(
+        <S1 />,
+        document.getElementById("example")
+    );
+}
+s1();
+</script>
+</body>
+</html>

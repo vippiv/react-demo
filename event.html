@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    function a() {
+        function ActionLink() {
+            function handleClick(event) {
+                event.preventDefault();
+                alert("链接被点击了");
+            }
+            return(
+                <a href="javascript:void(0);" onClick={handleClick}>点我</a>
+            )
+        }
+        const element = <ActionLink />
+        ReactDOM.render(
+            element,
+            document.getElementById("example")
+        );
+    }
+    // a();
+
+class Toggle extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {isToggle : true, name : "zwl"};
+    }
+    handleClick(name,e){
+        this.setState(prevState=>({
+            isToggleOn : !prevState.isToggleOn
+        }))
+        alert(name);
+    }
+    render(){
+        return (
+            <button onClick={this.handleClick.bind(this, this.state.name)}>
+                {this.state.isToggleOn ? "on" : "off"}
+            </button>
+        )
+    }
+}
+ReactDOM.render(
+    <Toggle />,
+    document.getElementById("example")
+);
+</script>
+</body>
+</html>

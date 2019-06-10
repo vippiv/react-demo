@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    function cpt1() {
+        function HelloMessage() {
+            return (
+                <h1>hello world</h1>
+            )
+        }
+        const element = <HelloMessage />;
+        ReactDOM.render(
+            element,
+            document.getElementById('example')
+        );
+    }
+    // cpt1();
+    
+    function cpt2() {
+        function Name(props) {
+            return <h1>网站名称：{props.name}</h1>
+        }
+        function Url(props) {
+            return <h1>网站地址：{props.url}</h1>
+        }
+        function NickName(props) {
+            return <h1>网站小名：{props.nickname}</h1>
+        }
+        function App() {
+            return (
+                <div>
+                    <Name name="菜鸟教程" />
+                    <Url url="http://www.baidu.com" />
+                    <NickName nickname="没有小名" />
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <App />,
+            document.getElementById("example")
+        );
+    }
+    // cpt2();
+    function cpt3() {
+        class ShoppingList extends React.Component{
+            render(){
+                return(
+                    <div className="shopping-list">
+                        <h1>Shopping list for {this.props.name}</h1>
+                        <ul>
+                            <li>Instagram</li>
+                            <li>WhatsApp</li>
+                            <li>Oculus</li>
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <ShoppingList name="future" />,
+            document.getElementById("example")
+        )
+    }
+    cpt3();
+</script>
+</body>
+</html>

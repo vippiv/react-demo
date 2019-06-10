@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>State</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    function s1() {
+        class Clock extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {date : new Date()};
+            }
+            componentDidMount(){
+                this.timerId = setInterval(()=>{
+                    this.tick()
+                },1000)
+            }
+            componentWillUnmount(){
+                clearInterval(this.timerId);
+            }
+            tick(){
+                this.setState({
+                    date : new Date()
+                });
+            }
+            render(){
+                return(
+                    <div>
+                        <h1>hello,world</h1>
+                        <h2>现在是：{this.state.date.toLocaleTimeString()}</h2>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Clock />,
+            document.getElementById("example")
+        );
+    }
+    // s1();
+    function s2() {
+        class States extends React.Component{
+            constructor(props) {
+                super(props);
+                this.state = { data : "hello React" }
+            }
+            handleState(){
+                this.setState({
+                    data : "data changed"
+                });
+            }
+            render(){
+                return(
+                    <div>
+                        <p>state：{this.state.data}</p>
+                        <button onClick={this.handleState.bind(this)}>change state</button>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(
+            <States />,
+            document.getElementById("example")
+        );
+    }
+    // s2();
+    function s3() {
+        class Comment extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    comments : [
+                        {id:1, user : "zwl", content : "第一条评论"},
+                        {id:2, user : "ju", content : "第二条评论"},
+                        {id:3, user : "hpg", content : "第三条评论"},
+                        {id:4, user : "dpd", content : "第四条评论"}
+                    ]
+                }
+            }
+            render(){
+                return (
+                    <ul>
+                        {
+                            this.state.comments.map((item)=>
+                                <li key={item.id}>user：{item.user}，content：{item.content}</li>
+                            )
+                        }
+                    </ul>
+                );
+            }
+        }
+        ReactDOM.render(
+            <Comment />,
+            document.getElementById("example")
+        );
+    }
+    // s3()
+    function s4() {
+        class CommentList extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    comments : [
+                        {id:1, user : "zwl", content : "第一条评论"},
+                        {id:2, user : "ju", content : "第二条评论"},
+                        {id:3, user : "hpg", content : "第三条评论"},
+                        {id:4, user : "dpd", content : "第四条评论"}
+                    ]
+                }
+            }
+            render(){
+                return (
+                    <ul>
+                        {
+                            <Comment comments={...this.state.comments} key={i}></Comment>
+                        }
+                    </ul>
+                );
+            }
+        }
+        class Comment extends React.Component{
+            constructor(props){
+                super(props);
+            }
+            render(){
+                return (
+                    this.props.comments.map((item)=>
+                        <li key={item.id}>user：{item.user}，content：{item.content}</li>
+                    )
+                )
+            }
+        }
+        ReactDOM.render(
+            <Comment />,
+            document.getElementById("example")
+        );
+    }
+    s4();
+</script>
+</body>
+</html>

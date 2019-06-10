@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>State counter</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    class Counter extends React.Component{
+        constructor(props, context) {
+            super(props, context);
+            this.state = { count : 1 }
+            this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick(){
+            this.setState({
+                count : parseInt(this.state.count) + 1
+            })
+        }
+        render(){
+            return (
+                <div>
+                    <span>{this.state.count}</span>
+                    <input type="button" value="plus" onClick={this.handleClick} />
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Counter />,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSX</title>
+    <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    function expresion(){
+        ReactDOM.render(
+            <div>
+                <h1>{1+1}</h1>
+            </div>,
+            document.getElementById("example")
+        );
+    }
+    // expresion();
+    
+    function expresion2() {
+        const i = 1;
+        ReactDOM.render(
+            <div>
+                <h1>{i==1?"true":"false"}</h1>
+            </div>,
+            document.getElementById("example")
+        );
+    }
+    // expresion2();
+    
+    function styles() {
+        var myStyle = {
+            fontSize : "14px",
+            color : "green"
+        }
+        ReactDOM.render(
+            <div>
+                <h1 style={myStyle}>hello world</h1>
+            </div>,
+            document.getElementById('example')
+        );
+    }
+    // styles();
+
+    function arrDemo() {
+        const arr = [
+            <h1>菜鸟教程</h1>,
+            <h2>学的不仅是技术，更是梦想！</h2>,
+        ];
+        ReactDOM.render(
+            <div>{arr}</div>,
+            document.getElementById("example")
+        );
+    }
+    arrDemo();
+</script>
+</body>
+</html>
